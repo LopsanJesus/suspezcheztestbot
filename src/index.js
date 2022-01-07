@@ -3,11 +3,14 @@ import { Telegraf } from 'telegraf'
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.command('addsong', (ctx) => {
-  // Explicit usage
-  ctx.telegram.leaveChat(ctx.message.chat.id)
+  ctx.reply("¿Link de Spotify?")
+  
+  bot.on('text', (ctx) => {
+    // Comprobar que es LINK de Spotify
+    console.log(ctx.from)
+    ctx.reply(`Vale. Link añadido. ${ctx.message.text}`)
+  })
 
-  // Using context shortcut
-  ctx.leaveChat()
 })
 
 bot.hears('culo', (ctx) => {
