@@ -7,10 +7,10 @@ bot.command('addsong', (ctx) => {
   ctx.reply("¿Link de Spotify?")
   ctx.reply(`${ctx.from.username}`)
   
-  bot.on('text', (ctx) => {
-    // Comprobar que es LINK de Spotify
-    ctx.reply(`Vale. Link añadido. ${ctx.message.text}`)
-  })
+  // bot.on('text', (ctx) => {
+  //   // Comprobar que es LINK de Spotify
+  //   ctx.reply(`Vale. Link añadido. ${ctx.message.text}`)
+  // })
 
 })
 
