@@ -1,52 +1,26 @@
-import { Telegraf } from 'telegraf'
+const TelegramBot = require("node-telegram-bot-api");
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+// Create a bot that uses 'polling' to fetch new updates
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
-bot.command('addsong', (ctx) => {
-  console.log(ctx.from)
-  ctx.reply("¿Link de Spotify?")
-  ctx.reply(`${ctx.from.username}`)
-  
-  // bot.on('text', (ctx) => {
-  //   // Comprobar que es LINK de Spotify
-  //   ctx.reply(`Vale. Link añadido. ${ctx.message.text}`)
-  // })
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-})
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
 
-bot.hears('culo', (ctx) => {
-  console.log(ctx.state);
-  ctx.reply("Eso se me dise!!??!?!")
-})
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
+});
 
-// bot.on('text', (ctx) => {
-//   // Explicit usage
-//   // ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`)
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
 
-//   // Using context shortcut
-//   ctx.reply(`Hello ${ctx.state.role}`)
-// })
-
-
-// bot.on('callback_query', (ctx) => {
-//   // Explicit usage
-//   // ctx.telegram.answerCbQuery(ctx.callbackQuery.id)
-
-//   // Using context shortcut
-//   ctx.answerCbQuery()
-// })
-
-// bot.on('inline_query', (ctx) => {
-//   const result = []
-//   // Explicit usage
-//   // ctx.telegram.answerInlineQuery(ctx.inlineQuery.id, result)
-
-//   // Using context shortcut
-//   ctx.answerInlineQuery(result)
-// })
-
-bot.launch()
-
-// Enable graceful stop
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, "Received your message");
+});
