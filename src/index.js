@@ -21,7 +21,7 @@ const contactDataWizard = new Scenes.WizardScene(
     ctx.reply('Enter your e-mail');
     return ctx.wizard.next();
   },
-  async (ctx) => {
+  (ctx) => {
     ctx.wizard.state.contactData.email = ctx.message.text;
     ctx.reply('Thank you for your replies, well contact your soon');
     // await mySendContactDataMomentBeforeErase(ctx.wizard.state.contactData);
