@@ -2,7 +2,7 @@ import { Telegraf } from 'telegraf'
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bot.command('quit', (ctx) => {
+bot.command('addsong', (ctx) => {
   // Explicit usage
   ctx.telegram.leaveChat(ctx.message.chat.id)
 
@@ -12,15 +12,19 @@ bot.command('quit', (ctx) => {
 
 bot.on('text', (ctx) => {
   // Explicit usage
-  ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`)
+  // ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`)
 
   // Using context shortcut
   ctx.reply(`Hello ${ctx.state.role}`)
 })
 
+bot.hears('culo', (ctx) => {
+  ctx.reply("Eso se me dise!!??!?!")
+})
+
 bot.on('callback_query', (ctx) => {
   // Explicit usage
-  ctx.telegram.answerCbQuery(ctx.callbackQuery.id)
+  // ctx.telegram.answerCbQuery(ctx.callbackQuery.id)
 
   // Using context shortcut
   ctx.answerCbQuery()
@@ -29,7 +33,7 @@ bot.on('callback_query', (ctx) => {
 bot.on('inline_query', (ctx) => {
   const result = []
   // Explicit usage
-  ctx.telegram.answerInlineQuery(ctx.inlineQuery.id, result)
+  // ctx.telegram.answerInlineQuery(ctx.inlineQuery.id, result)
 
   // Using context shortcut
   ctx.answerInlineQuery(result)
