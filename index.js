@@ -26,7 +26,7 @@ app.post("/new-message", function(req, res) {
 	// Remember to use your own API toked instead of the one below  "https://api.telegram.org/bot<your_api_token>/sendMessage"
 	axios
 		.post(
-			"https://api.telegram.org/bot777845702:AAFdPS_taJ3pTecEFv2jXkmbQfeOqVZGER/sendMessage",
+			"https://api.telegram.org/bot5095927198:AAGd4hqkt3IiJH8BEtRSnt2uJXEMzevIuQA/sendMessage",
 			{
 				chat_id: message.chat.id,
 				text: "Polo!!",
