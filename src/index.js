@@ -6,17 +6,24 @@ bot.onText(/\/addsong (.+)/, (msg, match) => {
   const resp = match[1];
 
   bot.sendMessage(chatId, resp);
-  bot.sendMessage(chatId, "Spotify link?");
 });
 
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
-  var isyouTubeUrl =
+  const isyouTubeUrl =
     /((http|https):\/\/)?(www\.)?(youtube\.com)|(youtu\.be)(\/)?([a-zA-Z0-9\-\.]+)\/?/.test(
       msg.text
     );
 
+  const isSpotifyUrl = /^(spotify:|https:\/\/[a-z]+\.spotify\.com\/)/.test(
+    msg.text
+  );
+
   if (isyouTubeUrl) {
-    bot.sendMessage(chatId, "Youtube video added");
+    bot.sendMessage(chatId, "Song added with Youtube link");
+  }
+
+  if (isSpotifyUrl) {
+    bot.sendMessage(chatId, "Song added with Spotify link");
   }
 });
