@@ -12,7 +12,7 @@ bot.onText(/\/addsong (.+)/, (msg, match) => {
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   var isyouTubeUrl =
-    /((http|https):\/\/)?(www\.)?(youtube\.com)(\/)?([a-zA-Z0-9\-\.]+)\/?/.test(
+    /((http|https):\/\/)?(www\.)?(youtube\.com)|(youtu\.be)(\/)?([a-zA-Z0-9\-\.]+)\/?/.test(
       msg.text
     );
 
