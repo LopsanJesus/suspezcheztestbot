@@ -21,7 +21,7 @@ bot.on("message", (msg) => {
 
   if (isSpotifyUrl) {
     bot.sendMessage(
-      `🤟🏼 cool ${msg.from.first_name}, song added with Youtube link`
+      `awesome! ${msg.from.first_name}, song added with Spotify link`
     );
   }
 });
